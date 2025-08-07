@@ -86,17 +86,7 @@ export const usePersistentNotifications = (events: Event[], getTimeUntilEvent: (
       badge: '/favicon.ico',
       tag: `event-now-${event.id}`,
       requireInteraction: true,
-      silent: false,
-      actions: [
-        {
-          action: 'stop',
-          title: 'Stop Notifications'
-        },
-        {
-          action: 'snooze',
-          title: 'Snooze 5 min'
-        }
-      ]
+      silent: false
     });
 
     notification.onclick = () => {

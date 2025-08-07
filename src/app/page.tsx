@@ -1,28 +1,27 @@
-import Image from "next/image";
+'use client';
 
-import { AddEventModal } from '@/components/AddEventModal';
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-import { 
-  Navbar, 
-  NavBody, 
-  NavItems, 
-  MobileNav, 
-  MobileNavHeader, 
-  MobileNavMenu, 
+import React, { useState } from 'react';
+
+// Force client-side rendering
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+import { useAuth } from '@/contexts/AuthContext';
+import { useEvents } from '@/hooks/useEvents';
+import { useNotifications } from '@/hooks/useNotifications';
+import { useRouter } from 'next/navigation';
+import { LogOut } from 'lucide-react';
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
   MobileNavToggle
 } from '@/components/ResizableNavbar';
-import { useAuth } from '@/contexts/AuthContext';
-import { useState, useEffect } from 'react';
-import React from 'react';
-import Link from 'next/link';
-import { LogOut } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { WavyBackground } from '@/components/Hero';
 
-          src="/next.svg"
+export default function Home() {
   const { isAuthenticated, user, logout, loading } = useAuth();
   const router = useRouter();
   
@@ -111,7 +110,6 @@ import { WavyBackground } from '@/components/Hero';
 
           {/* Right Side */}
           <div className="flex items-center space-x-4 relative z-50">
-
             <div className="flex items-center space-x-2 text-sm text-cyan-400">
               <span>Welcome, {user?.name}</span>
             </div>
@@ -188,7 +186,6 @@ import { WavyBackground } from '@/components/Hero';
         <div className="max-w-6xl mx-auto h-full">
           {/* Hero Section */}
           <div className="text-center relative mb-16 h-screen flex justify-center items-center flex-col">
-            
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="text-white">NEVER</span>
               <span className="block text-white animate-pulse">
@@ -201,9 +198,6 @@ import { WavyBackground } from '@/components/Hero';
                  Stay Organized and Stress Free, Every Day
               </span>
             </p>
-            
-            {/* System Status */}
-            
           </div>
 
           {/* Stats Bar */}
@@ -256,29 +250,36 @@ import { WavyBackground } from '@/components/Hero';
               </div>
             </div>
           </div>
-              {/* System Intel */}
-              <div className="bg-slate-900/80 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-6 shadow-2xl shadow-purple-500/10">
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-3 font-mono">
-                  <span className="text-purple-400">🧠</span>
-                  SYSTEM INTEL
-                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                </h3>
-                <div className="space-y-4 text-sm">
-                  <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
-                    <span className="text-cyan-400 mt-0.5 font-mono">[01]</span>
-                    <span className="text-blue-200">Enable neural link notifications for instant alerts</span>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
-                    <span className="text-cyan-400 mt-0.5 font-mono">[02]</span>
-                    <span className="text-blue-200">Critical events trigger visual cortex enhancements</span>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
-                    <span className="text-cyan-400 mt-0.5 font-mono">[03]</span>
-                    <span className="text-blue-200">Audio frequencies adapt to threat assessment</span>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
-                    <span className="text-cyan-400 mt-0.5 font-mono">[04]</span>
-          <div className="text-center text-cyan-400/60 text-sm font-mono">
+
+          {/* System Intel */}
+          <div className="bg-slate-900/80 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-6 shadow-2xl shadow-purple-500/10">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-3 font-mono">
+              <span className="text-purple-400">🧠</span>
+              SYSTEM INTEL
+              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            </h3>
+            <div className="space-y-4 text-sm">
+              <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
+                <span className="text-cyan-400 mt-0.5 font-mono">[01]</span>
+                <span className="text-blue-200">Enable neural link notifications for instant alerts</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
+                <span className="text-cyan-400 mt-0.5 font-mono">[02]</span>
+                <span className="text-blue-200">Critical events trigger visual cortex enhancements</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
+                <span className="text-cyan-400 mt-0.5 font-mono">[03]</span>
+                <span className="text-blue-200">Audio frequencies adapt to threat assessment</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-500/5 border border-purple-500/10 rounded-lg">
+                <span className="text-cyan-400 mt-0.5 font-mono">[04]</span>
+                <span className="text-blue-200">Real-time temporal synchronization across dimensions</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Footer */}
+          <div className="text-center text-cyan-400/60 text-sm font-mono mt-16">
             <p className="mb-4">
               <span className="text-purple-400">[NEXUS_CORE]</span> 
               Built with quantum architecture using Next.js, TypeScript, and Tailwind CSS
@@ -295,3 +296,10 @@ import { WavyBackground } from '@/components/Hero';
             </div>
             <p className="text-xs text-slate-500">
               // Temporal coordination system v2.0.47 • Quantum encryption active
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}

@@ -84,6 +84,32 @@ export const useEvents = () => {
     return upcomingEvents.length > 0 ? upcomingEvents[0] : null;
   }, [getUpcomingEvents]);
 
+  const getCompletedEvents = useCallback(() => {
+    const now = new Date();
+    return events
+      .filter(event => {
+        const eventDateTime = new Date(`${event.date}T${event.time}`);
+        return eventDateTime <= now;
+      })
+      .sort((a, b) => {
+        const aDateTime = new Date(`${a.date}T${a.time}`);
+        const bDateTime = new Date(`${b.date}T${b.time}`);
+        return bDateTime.getTime() - aDateTime.getTime(); // Most recent first
+      });
+  }, [events]);
+
+  const markEventAsCompleted = useCallback((id: string) => {
+    setEvents(prev => prev.map(event => 
+      event.id === id ? { ...event, completed: true } : event
+    ));
+  }, []);
+
+  const markEventAsIncomplete = useCallback((id: string) => {
+    setEvents(prev => prev.map(event => 
+      event.id === id ? { ...event, completed: false } : event
+    ));
+  }, []);
+
   const getTimeUntilEvent = useCallback((event: Event) => {
     const eventDateTime = new Date(`${event.date}T${event.time}`);
     const timeDiff = eventDateTime.getTime() - currentTime.getTime();
@@ -104,8 +130,11 @@ export const useEvents = () => {
     addEvent,
     deleteEvent,
     getUpcomingEvents,
+    getCompletedEvents,
     getEventsWithin24Hours,
     getNextEvent,
-    getTimeUntilEvent
+    getTimeUntilEvent,
+    markEventAsCompleted,
+    markEventAsIncomplete
   };
 };

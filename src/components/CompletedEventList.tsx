@@ -105,7 +105,7 @@ export const CompletedEventList: React.FC<CompletedEventListProps> = ({
                 
                 <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl text-sm border border-green-500/30 bg-green-500/10">
                   <span className="text-green-400 font-mono text-xs">[COMPLETED]</span>
-                  <span className="text-green-400 font-mono font-bold">{formatCompletedTime(event.completedAt)}</span>
+                  <span className="text-green-400 font-mono font-bold">{formatCompletedTime()}</span>
                   <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
                 </div>
               </div>

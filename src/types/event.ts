@@ -5,6 +5,7 @@ export interface Event {
   time: string;
   description: string;
   createdAt: Date;
+  completed?: boolean;
 }
 
 export interface NewEvent {

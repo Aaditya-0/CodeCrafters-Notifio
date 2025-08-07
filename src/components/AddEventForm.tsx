@@ -82,7 +82,7 @@ export const AddEventForm: React.FC<AddEventFormProps> = ({ onAddEvent }) => {
           </div>
           <div>
             <h2 className="text-xl font-bold text-white font-mono">CREATE_EVENT</h2>
-            <p className="text-sm text-cyan-400/70 font-mono">// Initialize new temporal anchor</p>
+            <p className="text-sm text-cyan-400/70 font-mono">{`// Initialize new temporal anchor`}</p>
           </div>
         </div>
         <button
